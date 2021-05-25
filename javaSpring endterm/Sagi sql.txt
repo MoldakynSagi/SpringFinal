@@ -1,0 +1,40 @@
+CREATE TABLE Admin(
+                      id BIGINT GENERATED ALWAYS AS  IDENTITY,
+                      name varchar,
+                      password varchar,
+                      PRIMARY KEY(id)
+);
+
+
+CREATE TABLE Users (
+                       id BIGINT GENERATED ALWAYS AS IDENTITY,
+                       name varchar,
+                       password varchar,
+                       PRIMARY KEY(id)
+);
+
+
+CREATE TABLE Electronics(
+                        id BIGINT GENERATED ALWAYS AS IDENTITY,
+                        name varchar,
+                        description varchar,
+                        price double precision,
+                        PRIMARY KEY(id)
+);
+
+
+CREATE TABLE Orders(
+                       id BIGINT GENERATED ALWAYS AS  IDENTITY,
+                       user_id BIGINT,
+                       electronic_id BIGINT,
+                       PRIMARY KEY(id),
+                       CONSTRAINT fk_registration
+                           FOREIGN KEY (user_id)
+                               REFERENCES Users(id),
+                       CONSTRAINT fk_product
+                           FOREIGN KEY (electronic_id)
+                               REFERENCES Electronics(id)
+);
+
+
+INSERT INTO Admin(name, password) VALUES ('Sagi', 'asd');
